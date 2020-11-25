@@ -1,21 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Login from './src/pages/login/index.js'
+import Home from './src/pages/home/index.js'
+//Navigation
+import { createStackNavigator } from '@react-navigation/stack'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const Autenticado = () => {
+  return (
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Home" component={Home}/>
+      <Drawer.Screen name="Logout" component={Logout}/>
+    </Drawer.Navigator>
+  )
+} 
+
+const Logout = ( {navigation} ) => {
+    return(
+      <View>
+        <Text>Deseja sair da aplicação?</Text>
+        <Button onPress={() => {
+          AsyncStorage.removeItem('@jwt');
+          navigation.push('Login');
+        }} title="Sair"></Button>
+      </View>
+    )
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown : false }}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Autenticado" component={Autenticado} />
+        <Stack.Screen name="Login" component={Login} />
+      
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
