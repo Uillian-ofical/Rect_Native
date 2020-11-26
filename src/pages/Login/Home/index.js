@@ -1,24 +1,17 @@
-mport React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, FlatList } from 'react-native';
-
+AsyncStorage
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ItemEvento from '../../components/itemEvento';
 
 
 const Home = () => {
+  
 
     const [token, setToken] = useState('');
     const [eventos, setEventos] = useState([]);
 
-    // const getToken = async () => {
-    //     setToken(await AsyncStorage.getItem('@jwt'));
-    // }
-
-    
-    // useEffect(()=>{
-    //     getToken();
-
-    // }, [])
+  
 
     useEffect(() => {
         listarEventos();
@@ -41,7 +34,7 @@ const Home = () => {
     return(
         <View>
             <Text>HOME</Text>
-            {/* <Text>{token}</Text> */}
+        
             <FlatList
                 data={eventos}
                 renderItem={renderItem}
