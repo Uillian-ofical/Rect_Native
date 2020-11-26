@@ -31,6 +31,7 @@ const Eventos = () => {
         <Item nome={item.link} />
       </View>
     )
+    
   }
 
   return (
@@ -44,6 +45,7 @@ const Eventos = () => {
         />
 
       </View>
+    
     </TouchableWithoutFeedback>
   )
 }
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2a2a2a',
     padding: 25,
     marginVertical: 8,
-    marginHorizontal: 16
+    marginHorizontal: 17
   }
 });
 
